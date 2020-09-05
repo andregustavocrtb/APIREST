@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-card>
-      <v-card-title>User register</v-card-title>
-      <v-card-text>
+    <v-card >
+      <v-card-title class="registro">User register</v-card-title>
+      <v-card-text class="registro">
         <v-form 
         @submit.prevent="handleRegisterNewUser()" 
         id="user-register"
@@ -12,11 +12,11 @@
               <v-text-field
                 required 
                 solo 
-                flat 
+                flat
                 background-color="#efefef"
                 type="input" 
                 v-model.trim="$v.user.email.$model"
-                label="email"
+                label="E-mail"
               ></v-text-field>
 
               <v-text-field
@@ -26,14 +26,15 @@
                 background-color="#efefef"
                 type="password"
                 v-model.trim="$v.user.password.$model"
-                label="password"
+                label="Password"
               ></v-text-field>
 
-                <v-btn color="success"
+                <v-btn
+                  color=#10b4f1
                   type="submit"
                   class="mb-12"
                   block
-                >register</v-btn>
+                >Register</v-btn>
             </v-col>
           </v-row>
         </v-form>    
@@ -82,3 +83,14 @@ export default {
     }
   }
 };</script>
+<style>
+.justify-center{
+  background-color: #615a58;
+}
+.registro{
+  background-color: #615a58;
+  color: white;
+  text-align: center;
+  font-size: 1.3em;
+}
+</style>

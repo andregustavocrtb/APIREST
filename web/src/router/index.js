@@ -1,16 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+
 Vue.use(VueRouter)
 
   const routes = [
   {path: '/', component: () => import('@/views/Home')},
-  {path: '/list', component: () => import('@/views/UserList')},
+  {path:'/dev', component: () => import('@/views/Dev')},
+  {path: '/dev/list', component: () => import('@/views/UserList')},
   {path: '/register', component: () => import('@/views/UserRegister')},
-  {path: '/deleteuser', component: () => import('@/views/UserDelete')},
-  {path: '/listproj', component: () => import('@/views/ProjectList')},
+  {path: '/dev/deleteuser', component: () => import('@/views/UserDelete')},
+  {path: '/dev/listproj', component: () => import('@/views/ProjectList')},
   {path: '/registerproj', component: () => import('@/views/ProjectRegister')},
-  {path: '/login', component: () => import('@/views/Login')}
+  {path: '/login', component: () => import('@/views/Login')},
+  {path: '/auth', component: () => import('@/views/Auth')}
 ]
 
 const router = new VueRouter({

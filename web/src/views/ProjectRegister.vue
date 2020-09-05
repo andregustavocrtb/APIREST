@@ -6,24 +6,15 @@
         <v-form id="project-register">
           <v-row class="justify-center">
             <v-col cols="12" md="4">
-              <v-text-field
-                required 
-                solo 
-                flat 
-                background-color="#efefef"
-                type="input"
-                label="Project title"
-              ></v-text-field>
+              <input 
+              v-model="project.title" 
+              type="text" 
+              placeholder="Title">
 
-              <v-text-field
-                required
-                solo
-                flat
-                background-color="#efefef"
-                type="input"
-                label="user ID"
-              ></v-text-field>
-
+              <input 
+              v-model="project.user_id" 
+              type="uuid" 
+              placeholder="User ID">
                 <v-btn 
                   color="success"
                   @click="handleRegisterNewProject()"
@@ -49,15 +40,13 @@ export default {
   data() {
     return {project:{
         title: null,
-        user_id: '', 
+        user_id: "", 
     }
     }
   },
   methods: {
       handleRegisterNewProject() {
-        this.axios.post('http://localhost:3333/projects', {
-          project: this.project,
-        })
+        this.axios.post('http://localhost:3333/projects', this.project)
         .then(response => console.log(response))
         .catch(error => console.log(error))
       }

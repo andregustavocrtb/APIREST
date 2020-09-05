@@ -6,18 +6,18 @@
       </a>
     </div>
     <div class="titlebox">
-      <title class="titulo">Project Managment Application</title>
+      <title class="titulo">Developer Tools</title>
     </div>
     <nav class="menu">
       <ul>
         <li>
-          <a href="/register">Registrar</a>
+          <a href="/dev/list">Listar Usuários</a>
         </li>
         <li>
-          <a href="/login">Login</a>
+          <a href="/dev/listproj">Listar Projetos</a>
         </li>
         <li>
-          <a href="/dev">Developer tools</a>
+          <a href="/dev/deleteuser">Deletar Usuários</a>
         </li>
       </ul>
     </nav>
@@ -89,4 +89,3 @@ export default {};
   height: 72px;
 }
 </style>
-

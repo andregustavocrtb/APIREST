@@ -1,30 +1,28 @@
 <template>
-  <header class="cabecalho">
+    <header class="cabecalho">
     <div class="logo">
       <a>
-        <img src="https://d293isj6nw1n53.cloudfront.net/images/favicon.png" href="http://localhost:8080/home"/>
+        <img src="https://d293isj6nw1n53.cloudfront.net/images/favicon.png" />
       </a>
     </div>
     <div class="titlebox">
-      <title class="titulo">Developer Tools</title>
+      <title class="titulo">Project Managment Application</title>
     </div>
     <nav class="menu">
       <ul>
         <li>
-          <a href="/dev/deleteuser">Listar Usuários</a>
-        </li>
-        <li>
-          <a href="/dev/listproj">Listar Projetos</a>
+          <a href="/registerproj">Registrar Projeto</a>
         </li>
       </ul>
     </nav>
   </header>
 </template>
 <script>
-export default {};
+export default {
+    
+}
 </script>
 <style>
-
 .cabecalho {
   margin: 0;
   border-bottom: solid 5px #10b4f1;
@@ -66,13 +64,12 @@ export default {};
   text-decoration: none;
   color: #eee;
   font-size: 1.3em;
-  padding-left: 15px;
+  
 }
 .titulo {
   display: inline-block;
   color: white;
   font-size: 1.3em;
-  padding-left: 15px;
   text-align: center;
   background-color: #615a58;
   text-decoration: underline;

@@ -6,6 +6,7 @@ Vue.use(Vuex, axios)
 
 export default new Vuex.Store({
   state: {
+    user: null,
     token: localStorage.getItem('access_token') || null,
   },
   mutations: {
@@ -28,6 +29,14 @@ export default new Vuex.Store({
             // console.log(response);
             // context.commit('addTodo', response.data)
           })
+    },
+    setUser(state,user) {
+      state.user = user
+      if(user) {
+        axios.defaults.headers.common['Authorization'] = `bearer ${user.token}`
+      } else {
+        delete axios.defaults.headers.common['Authorization']
+      }
     }
   }
 })

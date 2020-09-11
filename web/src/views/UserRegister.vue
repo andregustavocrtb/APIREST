@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card >
+    <v-card  class="card">
       <v-card-title class="registro">User register</v-card-title>
       <v-card-text class="registro">
         <v-form 

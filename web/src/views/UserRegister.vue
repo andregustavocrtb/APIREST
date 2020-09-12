@@ -76,6 +76,7 @@ export default {
           email: this.user.email,
           password: this.user.password,
         })
+        .then((response)=>console.log(response.data))
       window.alert('Registrado');
       } catch (error) {
         console.log(error.response);

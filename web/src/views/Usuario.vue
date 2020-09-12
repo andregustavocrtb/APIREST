@@ -1,4 +1,5 @@
 <template>
+<div>
     <header class="cabecalho">
     <div class="logo">
       <a>
@@ -16,10 +17,32 @@
       </ul>
     </nav>
   </header>
+  <div>
+    <v-card>
+    <v-card-text class="lista" v-for="data in data" v-bind:key="data.id">
+      {{data}}
+    </v-card-text>
+    </v-card>
+  </div>
+</div>
 </template>
 <script>
+import axios from 'axios'
 export default {
-    
+  data(){
+    return{
+      data:{}
+    }
+  },
+  beforeMount(){
+    this.getid()
+  },
+  methods:{
+  async getid(){
+    const { data } = await axios.get("http://localhost:3333/usersid");
+    this.data = data;
+  }
+}
 }
 </script>
 <style>

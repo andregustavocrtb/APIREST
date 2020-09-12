@@ -19,7 +19,7 @@
     <hr>
     <v-card>
     <v-card-text class="lista">
-      <div>{{data}}</div>
+      <v-data-table>{{data}}</v-data-table>
     </v-card-text>
     </v-card>
   </v-container>

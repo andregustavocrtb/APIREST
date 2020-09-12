@@ -1,8 +1,8 @@
 <template>
 <v-card>
-  <div>
-    <table border ='1px'>
-      <tr>
+  <div overflow-x:auto>
+    <table>
+      <tr class="header">
         <td>ID</td>
         <td>Email</td>
         <td>Password</td>
@@ -12,7 +12,7 @@
         <td>{{project.project_id}}</td>
         <td>{{project.title}}</td>
         <td>{{project.user_id}}</td>
-        <td><button v-on:click="deleteProject(project.project_id)" >Delete</button></td>
+        <td class="botao"><button v-on:click="deleteProject(project.project_id)" >Delete</button></td>
       </tr>
     </table>
   </div>
@@ -48,3 +48,24 @@ export default{
           }
       }
 </script>
+<style>
+.botao{
+  background-color:#CD7F7D ;
+  padding: 10px;
+}
+table{
+  width: 100%;
+}
+.header{
+  background-color: #10b4f1;
+  text-align: left;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+td{
+  text-align: left;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>

@@ -6,8 +6,6 @@ Vue.use(VueRouter)
 const routes = [
   {path:'/dev', 
     component: () => import('@/views/Dev')},
-  {path: '/dev/list', 
-    component: () => import('@/views/UserList')},
   {path: '/register', 
     component: () => import('@/views/UserRegister')},
   {path: '/dev/deleteuser', 

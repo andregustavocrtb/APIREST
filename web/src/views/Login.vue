@@ -19,7 +19,12 @@
             placeholder="Password"
             v-model="user.password"
           />
-          <button @click="saveUser(user);" type="submit">Login</button>
+          <button @click="[saveUser(user)]" type="submit" id="myButton">Login</button>
+        <script type="text/javascript">
+          document.getElementById("myButton").onclick = function () {
+            location.href = "www.yoursite.com";
+          };
+        </script>
         <a href="http://localhost:8080/register">
           Não possui registro? Registre-se aqui!</a>
     </div>
@@ -42,20 +47,34 @@ export default {
   methods: {
     async saveUser(user) {
       let users = localStorage.getItem("usersApp");
-      const { token } = await axios.get('http://localhost:3333/token')
-
+      
       if (users) {
         users = JSON.parse(users);
         users.push(user);
-        users.push({token})
+      
       } else {
-        users = [user, {token}];
+        users = [user];
       }
-      localStorage.setItem("usersApp", JSON.stringify(users));
-      this.$router.push("/usuario")
+    localStorage.setItem("usersApp", JSON.stringify(users));
     },
-},
-};
+    async GenerateToken() {
+      try {
+        await axios.post('http://localhost:3333/user/login', {
+          email: this.user.email,
+          password: this.user.password,
+        })
+        .then(function(response) {const obj = (response.data.token)
+          return console.log(obj);
+        })
+       }catch (error) {
+        console.log(error.response);
+      }
+    },
+    async changeRoute(obj){
+      return this.$router.push(`usuario/${obj}`)
+      }
+    }
+}
 </script>
 <style>
 .login-modal{

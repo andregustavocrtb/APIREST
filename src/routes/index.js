@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken')
 const express = require('express');
 
 const routes = express.Router();
@@ -6,11 +5,9 @@ const routes = express.Router();
 const userController = require('../controller/UserController');
 const projectController = require('../controller/ProjectController');
 
+routes.get('/usersid', userController.getid);
 routes.get('/users', userController.index);
-routes.get('/token', function (req, res) {
-    const token = jwt.sign({}, 'segredo',{expiresIn: '7d'});
-  res.json(token)
-})
+routes.post('/user/login', userController.execute);
 routes.post('/users', userController.create);
 routes.delete('/users/:email', userController.delete)
 

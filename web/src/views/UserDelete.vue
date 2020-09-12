@@ -1,22 +1,20 @@
 <template>
-<v-card>
-  <div>
-    <table border ='1px'>
-      <tr>
+  <div overflow-x:auto>
+    <table>
+      <tr class="header">
         <td>ID</td>
-        <td>Email</td>
+        <td>E-mail</td>
         <td>Password</td>
         <td>Delete</td>
       </tr>
-      <tr v-for="user in users" v-bind:key="user.user_id">
-        <td>{{user.user_id}}</td>
+      <tr v-for="user in users" v-bind:key="user.id">
+        <td>{{user.id}}</td>
         <td>{{user.email}}</td>
         <td>{{user.password}}</td>
-        <td><button v-on:click="deleteUser(user.email)" >Delete</button></td>
+        <td class="botao"><button v-on:click="deleteUser(user.email)" >Delete User</button></td>
       </tr>
     </table>
   </div>
-</v-card>
 </template>
 
 <script>
@@ -29,7 +27,7 @@ export default{
       data(){
           return{
               users:null,
-          }
+              }
       },
       methods: {
         getData(){
@@ -48,3 +46,24 @@ export default{
           }
       }
 </script>
+<style>
+.botao{
+  background-color:#CD7F7D ;
+  padding: 10px;
+}
+table{
+  width: 100%;
+}
+.header{
+  background-color: #10b4f1;
+  text-align: left;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+td{
+  text-align: left;
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+</style>

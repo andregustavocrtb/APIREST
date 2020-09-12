@@ -1,5 +1,4 @@
-
-const axios = require('axios')
+const jwt = require('jsonwebtoken')
 const knex = require('../database')
 
 module.exports ={
@@ -40,4 +39,28 @@ module.exports ={
             next(error)
         }
     },
+
+    async execute(request, response, next){
+        try{
+            const {email, password} = request.body
+
+            const query = `SELECT FROM users WHERE email='${email}' AND password='${password}'`
+            const results = await knex.raw(query)
+            if(results){
+            const token = jwt.sign({}, 'senha', {expiresIn:'7d'})
+            return response.status(201).json({token})}
+            else{return response.json('user not found')}
+        }catch(error){
+        next(error)
+        }
+    },
+    async getid(request, response, next){
+        try{
+            const results = await knex.raw(`SELECT id, email FROM users `)
+            
+            return response.json(results.rows)
+        }catch(error){
+            next(error)
+        }
+    }
 }

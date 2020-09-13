@@ -26,10 +26,10 @@ module.exports = {
 
     async create(request, response, next){
         try{
-            const { title, user_id } = request.body;
+            const { title, password} = request.body;
 
-            const query = `INSERT INTO projects (title, user_id) 
-            VALUES ('${title}', '${ user_id }') RETURNING project_id`;
+            const query = `INSERT INTO projects (title, user_password) 
+            VALUES ('${title}', '${password}') RETURNING project_id`;
 
             const results = await knex.raw(query)
             return response.status(201).json(results.rows[0]);

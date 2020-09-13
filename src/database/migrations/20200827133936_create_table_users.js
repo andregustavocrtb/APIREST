@@ -7,7 +7,8 @@ exports.up = async knex => {
         password VARCHAR(30) NOT NULL,
         created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-      )
+        UNIQUE(password)
+        )
     `);
   };
 exports.down = async knex => await knex.raw('DROP TABLE users');

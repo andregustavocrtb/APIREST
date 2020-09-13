@@ -8,20 +8,28 @@
     </div>
     <div class="titlebox">
       <title class="titulo">Project Managment Application</title>
-    </div>
-    <nav class="menu">
-      <ul>
-        <li>
-          <a href="/registerproj">Registrar Projeto</a>
-        </li>
-      </ul>
-    </nav>
+    </div>    
   </header>
   <div>
-    <v-card>
-    <v-card-text class="lista" v-for="data in data" v-bind:key="data.id">
-      {{data}}
-    </v-card-text>
+    <v-card class="titulo-registro">
+      <label class="registro">REGISTRAR PROJETO</label>
+      <hr class="hr">
+      <form class="registro">
+        <input 
+          name="Title" 
+          id="title"
+          class="project-input"
+          placeholder="Title"
+          v-model="project.title"/>
+        <input
+          type="password" 
+          name="password" 
+          id="password"
+          class="project-input"
+          placeholder="password"
+          v-model="project.password"/>
+      <button class="botao" @click="handleRegisterNewProject()" >Registrar</button>
+      </form>
     </v-card>
   </div>
 </div>
@@ -31,17 +39,19 @@ import axios from 'axios'
 export default {
   data(){
     return{
-      data:{}
+      project:{
+        title: '',
+        password:""
+      }
     }
   },
-  beforeMount(){
-    this.getid()
-  },
   methods:{
-  async getid(){
-    const { data } = await axios.get("http://localhost:3333/usersid");
-    this.data = data;
-  }
+    handleRegisterNewProject() {
+        axios.post('http://localhost:3333/projects', this.project)
+        .then(window.alert('Projeto Registrado'))
+        .catch(error => console.log(error))
+      },
+    
 }
 }
 </script>
@@ -72,23 +82,6 @@ export default {
   float: right;
 }
 
-.menu ul {
-  margin: 0;
-  padding: 36px 15px;
-  height: 72px;
-}
-
-.menu li {
-  text-align: right;
-  display: inline-block;
-}
-
-.menu a {
-  text-decoration: none;
-  color: #eee;
-  font-size: 1.3em;
-  
-}
 .titulo {
   display: inline-block;
   color: white;
@@ -98,6 +91,13 @@ export default {
   text-decoration: underline;
 }
 
+.titulo-registro {
+  display: inline-block;
+  width: 100%;
+  font-size: 1.3em;
+  text-align: left;
+}
+
 .titlebox {
   display: block;
   float: left;
@@ -105,4 +105,25 @@ export default {
   padding-top: 36px;
   height: 72px;
 }
+.registro{
+  background-color: #615a58;
+  color: white;
+  display: flex;
+  flex-direction: column;
+} 
+.registro input{
+  background-color: #615a58;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.botao{
+  display: flex;
+  align-self: center;
+  background-color: #10b4f1;
+  padding: 5px 15px;
+  color: black;
+}
+
 </style>

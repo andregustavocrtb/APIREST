@@ -3,6 +3,7 @@
     <div class=login-modal>
       <img src="https://d293isj6nw1n53.cloudfront.net/images/favicon.png" href="http://localhost:8080/home" class="logo" />
         <hr>
+        <form class="login" @submit.prevent="login">
         <h2 class="login-heading">Login</h2>
           <input 
             type="email" 
@@ -19,12 +20,8 @@
             placeholder="Password"
             v-model="user.password"
           />
-          <button @click="[saveUser(user)]" type="submit" id="myButton">Login</button>
-        <script type="text/javascript">
-          document.getElementById("myButton").onclick = function () {
-            location.href = "www.yoursite.com";
-          };
-        </script>
+          <button type="submit" id="myButton">Login</button>
+        </form>
         <a href="http://localhost:8080/register">
           Não possui registro? Registre-se aqui!</a>
     </div>
@@ -32,10 +29,8 @@
 </template>
 
 <script>
-import axios from 'axios'
 
 export default {
-  name: "login",
   data() {
     return {
       user: {
@@ -45,37 +40,17 @@ export default {
     };
   },
   methods: {
-    async saveUser(user) {
-      let users = localStorage.getItem("usersApp");
-      
-      if (users) {
-        users = JSON.parse(users);
-        users.push(user);
-      
-      } else {
-        users = [user];
+    login: function () {
+        const email = this.user.email 
+        const password = this.user.password
+        this.$store.dispatch('login', { email, password })
+       .then(() => this.$router.push('/usuario'))
+       .catch(err => console.log(err))
       }
-    localStorage.setItem("usersApp", JSON.stringify(users));
-    },
-    async GenerateToken() {
-      try {
-        await axios.post('http://localhost:3333/user/login', {
-          email: this.user.email,
-          password: this.user.password,
-        })
-        .then(function(response) {const obj = (response.data.token)
-          return console.log(obj);
-        })
-       }catch (error) {
-        console.log(error.response);
-      }
-    },
-    async changeRoute(obj){
-      return this.$router.push(`usuario/${obj}`)
-      }
-    }
+  }
 }
 </script>
+
 <style>
 .login-modal{
   background-color: #615a58;
@@ -130,5 +105,5 @@ export default {
   margin-bottom: 15px;
   color: white;
 }
-
+  
 </style>

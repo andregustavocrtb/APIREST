@@ -4,7 +4,7 @@
       <v-card-title class="registro">User register</v-card-title>
       <v-card-text class="registro">
         <v-form 
-        @submit.prevent="handleRegisterNewUser()" 
+        @submit.prevent="register" 
         id="user-register"
         >
           <v-row class="justify-center">
@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import api from '@/services/api.service.js';
+
 import { email, minLength, required } from 'vuelidate/lib/validators';
 //import jwt from 'jsonwebtoken' 
 
@@ -70,20 +70,18 @@ export default {
     }
   },
   methods: {
-    async handleRegisterNewUser() {
-      try {
-        await api.post('/users', {
+      register: function (){
+        let data = {
           email: this.user.email,
-          password: this.user.password,
-        })
-        .then((response)=>console.log(response.data))
-      window.alert('Registrado');
-      } catch (error) {
-        console.log(error.response);
+          password: this.user.password
+        }
+        this.$store.dispatch('register', data)
+        .then(()=> this.$router.push('/usuario'))
+        .catch(err => console.log(err))
       }
     }
-  }
-};</script>
+};
+</script>
 <style>
 .justify-center{
   background-color: #615a58;

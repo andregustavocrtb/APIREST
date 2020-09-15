@@ -17,13 +17,14 @@ const routes = [
     component: () => import('@/views/ProjectRegister')},
   {path: '/login', 
     component: () => import('@/views/Login')},
-  {path: '/home',
+  {path: '/',
     component: () => import('@/views/Home')},
   {path:'/usuario',
     component: () => import('@/views/Usuario'),
-    meta:{
-      requiresAuth:true
-    }}
+    //meta:{
+      //requiresAuth:true
+    //}
+  }
 ]
 
 

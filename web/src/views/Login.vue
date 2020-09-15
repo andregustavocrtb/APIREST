@@ -1,7 +1,7 @@
 <template>
   <v-card class="login-form">
     <div class=login-modal>
-      <img src="https://d293isj6nw1n53.cloudfront.net/images/favicon.png" href="http://localhost:8080/home" class="logo" />
+      <img src="https://d293isj6nw1n53.cloudfront.net/images/favicon.png" class="logo" />
         <hr>
         <form class="login" @submit.prevent="login">
         <h2 class="login-heading">Login</h2>

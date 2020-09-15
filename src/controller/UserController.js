@@ -48,7 +48,7 @@ module.exports ={
         try{
             const {email, password} = request.body
 
-            const query = `SELECT email='${email}' AND password='${password}' FROM users ;
+            const query = `SELECT email FROM users WHERE email = '${email}' AND password = '${password}' ;
                            INSERT INTO users (email, password) VALUES ('${email}', '${password}') RETURNING id;`
             const results = await knex.raw(query)
             if(results){

@@ -17,18 +17,34 @@
       <form class="registro">
         <input 
           name="Title" 
-          id="title"
+          id="title_register"
           class="project-input"
           placeholder="Title"
           v-model="project.title"/>
         <input
           type="password" 
           name="password" 
-          id="password"
+          id="password_register"
           class="project-input"
           placeholder="password"
           v-model="project.password"/>
       <button class="botao" @click="handleRegisterNewProject()" >Registrar</button>
+      </form>
+    </v-card>
+  </div>
+  <hr class="card-divider">
+  <div>
+    <v-card class="titulo-registro">
+      <label class="registro">DELETAR PROJETO</label>
+      <hr class="hr">
+      <form class="registro">
+        <input 
+          name="Title" 
+          id="title_delete"
+          class="project-input"
+          placeholder="Title"
+          v-model="project.title"/>
+      <button class="botao" @click="deleteProject()" >Deletar</button>
       </form>
     </v-card>
   </div>
@@ -51,7 +67,9 @@ export default {
         .then(window.alert('Projeto Registrado'))
         .catch(error => console.log(error))
       },
-    
+    deleteProject(){
+      axios.delete('http://localhost:3333/projects/', this.project)
+    }
 }
 }
 </script>
@@ -124,6 +142,9 @@ export default {
   background-color: #10b4f1;
   padding: 5px 15px;
   color: black;
+}
+.card-divider{
+  height: 10px;
 }
 
 </style>
